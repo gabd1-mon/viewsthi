@@ -37,7 +37,7 @@ class DashboardController extends Controller
                     'linhas' => [
                         ['label' => 'Verde',    'valor' => '74,52%', 'cor' => 'bg-green-400'],
                         ['label' => 'Amarelo',  'valor' => '7,15%',  'cor' => 'bg-yellow-400'],
-                        ['label' => 'Vermelho', 'valor' => '18,33%', 'cor' => 'bg-red-500'],
+                        ['label' => 'Vermelho', 'valor' => '18,33%', 'cor' => 'bg-red-400'],
                     ],
                 ],
                 [
@@ -45,7 +45,7 @@ class DashboardController extends Controller
                     'linhas' => [
                         ['label' => 'Verde',    'valor' => '74,52%', 'cor' => 'bg-green-400'],
                         ['label' => 'Amarelo',  'valor' => '7,15%',  'cor' => 'bg-yellow-400'],
-                        ['label' => 'Vermelho', 'valor' => '18,33%', 'cor' => 'bg-red-500'],
+                        ['label' => 'Vermelho', 'valor' => '18,33%', 'cor' => 'bg-red-400'],
                     ],
                 ],
             ],
