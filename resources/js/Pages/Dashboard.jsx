@@ -121,7 +121,8 @@ export default function Dashboard({
                             <div className="flex items-center gap-2">
                                 <span className="text-gray-400 text-xs w-20 shrink-0">{item.label}</span>
                                 <div className="flex-1 bg-gray-700 rounded-full h-5 relative">
-                                    <div className={`${item.cor} h-5 rounded-full flex items-center px-2`} style={{ width: `${item.percent * 3}%` }}>
+                                    <div className="h-5 rounded-full flex items-center px-2"
+    style={{ width: `${item.percent * 3}%`, backgroundColor: item.cor }}>
                                         <span className="text-xs font-bold text-black">{item.valor.toLocaleString('pt-BR')}</span>
                                     </div>
                                 </div>

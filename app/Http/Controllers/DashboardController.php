@@ -53,12 +53,12 @@ class DashboardController extends Controller
             'envelhecimento' => [
                 'alertaPercent' => 28.8,
                 'faixas' => [
-                    ['label' => '0-15 dias',   'valor' => 4281, 'percent' => 15.7, 'cor' => 'bg-green-400'],
-                    ['label' => '16-25 dias',  'valor' => 7641, 'percent' => 28.5, 'cor' => 'bg-yellow-400'],
-                    ['label' => '26-35 dias',  'valor' => 2469, 'percent' => 9.2,  'cor' => 'bg-orange-400'],
-                    ['label' => '36-45 dias',  'valor' => 3899, 'percent' => 11.6, 'cor' => 'bg-orange-600'],
-                    ['label' => '46-60 dias',  'valor' => 1677, 'percent' => 6.3,  'cor' => 'bg-red-400'],
-                    ['label' => '>60 dias ⚠️', 'valor' => 7713, 'percent' => 28.8, 'cor' => 'bg-red-700'],
+                    ['label' => '0-15 dias',   'valor' => 4281, 'percent' => 15.7, 'cor' => '#4ade80'],
+                    ['label' => '16-25 dias',  'valor' => 7641, 'percent' => 28.5, 'cor' => '#facc15'],
+                    ['label' => '26-35 dias',  'valor' => 2469, 'percent' => 9.2,  'cor' => '#fb923c'],
+                    ['label' => '36-45 dias',  'valor' => 3899, 'percent' => 11.6, 'cor' => '#ea580c'],
+                    ['label' => '46-60 dias',  'valor' => 1677, 'percent' => 6.3,  'cor' => '#a3e635'],
+                    ['label' => '>60 dias ⚠️', 'valor' => 7713, 'percent' => 28.8, 'cor' => '#b91c1c'],
                 ],
             ],
 
