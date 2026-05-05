@@ -82,7 +82,39 @@ class DashboardController extends Controller
                         ['uf' => 'RO', 'verdeFaturado' => 49.3, 'vermFaturado' => 14.3, 'fracionado' => 67, 'pendente' => 33,  'vermCarteira' => 79.3,'diagnostico' => 'Frac. extremo',  'nivel' => 'atencao'],
                     ],
             ],
-            
+
+            'planoAcao' => [
+                    [
+                        'titulo' => '🚨 Imediato (esta semana)',
+                        'cor' => '#f97316', // laranja
+                        'itens' => [
+                            ['numero' => 1, 'titulo' => 'Força-tarefa nos 7.713 itens >60 dias', 'descricao' => 'Levantar causa-raiz item a item: falta de estoque, produção parada ou problema de planejamento?', 'tag' => 'URGENTE', 'tagCor' => '#f97316'],
+                            ['numero' => 2, 'titulo' => 'Acionar PR (100% vermelho na carteira)', 'descricao' => 'Zero itens faturados no estado. Contato imediato com responsável.', 'tag' => null, 'tagCor' => null],
+                            ['numero' => 3, 'titulo' => 'Revisar TMA real vs faturado', 'descricao' => 'O TMA faturado não reflete a realidade. Mapear divergência.', 'tag' => null, 'tagCor' => null],
+                        ],
+                    ],
+                    [
+                        'titulo' => '⚠️ Curto Prazo (este mês)',
+                        'cor' => '#eab308', // amarelo
+                        'itens' => [
+                            ['numero' => 4, 'titulo' => 'Criar alerta diário de carteira envelhecida', 'descricao' => 'Lista automática dos pedidos que passam de 30 dias sem faturar, com responsável definido para cada um.', 'tag' => 'PROCESSO', 'tagCor' => '#eab308'],
+                            ['numero' => 5, 'titulo' => 'Reunião semanal de carteira', 'descricao' => 'Review semanal dos itens parados com time comercial e logística.', 'tag' => null, 'tagCor' => null],
+                            ['numero' => 6, 'titulo' => 'Meta de redução de vermelho', 'descricao' => 'Definir meta: reduzir carteira vermelha de 39,6% para abaixo de 25%.', 'tag' => null, 'tagCor' => null],
+                        ],
+                    ],
+                    [
+                        'titulo' => '📋 Médio Prazo',
+                        'cor' => '#3b82f6', // azul
+                        'itens' => [
+                            ['numero' => 7, 'titulo' => 'Reestruturar TMA por segmento', 'descricao' => 'Criar metas de TMA separadas por tipo de produto e região.', 'tag' => null, 'tagCor' => null],
+                            ['numero' => 8, 'titulo' => 'Incluir TMA real no dashboard', 'descricao' => 'Mostrar TMA considerando todos os itens da carteira, não só os faturados.', 'tag' => null, 'tagCor' => null],
+                            ['numero' => 9, 'titulo' => 'Implementar sistema de acompanhamento', 'descricao' => 'Desenvolver ferramenta para monitorar o desempenho da carteira em tempo real.', 'tag' => null, 'tagCor' => null],
+                                                        
+                                                        
+                            ],
+                    ],
+                        ],
+
 
         ]);
     }

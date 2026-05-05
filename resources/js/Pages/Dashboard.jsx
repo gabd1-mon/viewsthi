@@ -10,7 +10,8 @@ export default function Dashboard({
     tmaDistribuicao,
     envelhecimento,
     segmentosCriticos,
-    diagnosticoPorEstado
+    diagnosticoPorEstado,
+    planoAcao
 }) {
     return (
     <PanelLayout>
@@ -229,11 +230,66 @@ export default function Dashboard({
                         </div>
 
                     </Card>
-                    <hr className="border-t border-gray-700 my-6" />
-
                     
 
-        </div>   
+
+                    {/* Plano de Ação */}
+                   
+
+                <div className="flex items-center gap-4 my-4">
+                    <span className="text-gray-500 text-sm whitespace-nowrap tracking-widest">PLANO DE AÇÃO</span>
+                    <hr className="flex-1 border-t border-gray-700" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {planoAcao.map((coluna) => (
+                        <div key={coluna.titulo}>
+                            {/* Título da coluna */}
+                            <p className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+                                <span style={{ color: coluna.cor }}>{coluna.titulo}</span>
+                            </p>
+
+                            {/* Cards */}
+                            <div className="flex flex-col gap-3">
+                                {coluna.itens.map((item) => (
+                                    <div
+                                        key={item.numero}
+                                        className="dark:bg-gray-900/60 rounded-lg p-4 border border-gray-800 hover:border-gray-600 transition-colors"
+                                    >
+                                        <div className="flex items-start gap-3">
+                                            {/* Número */}
+                                            <span
+                                                className="text-2xl font-black shrink-0"
+                                                style={{ color: coluna.cor }}
+                                            >
+                                                {item.numero}
+                                            </span>
+
+                                            <div className="flex-1">
+                                                {/* Título */}
+                                                <p className="text-gray-700 dark:text-gray-300 font-bold text-sm mb-1">{item.titulo}</p>
+
+                                                {/* Descrição */}
+                                                <p className="text-gray-700 dark:text-gray-300 text-xs leading-relaxed">{item.descricao}</p>
+
+                                                {/* Tag */}
+                                                {item.tag && (
+                                                    <span
+                                                        className="inline-block mt-2 text-xs font-bold px-2 py-1 rounded border"
+                                                        style={{ color: item.tagCor, borderColor: item.tagCor }}
+                                                    >
+                                                        {item.tag}
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+       </div>   
     </PanelLayout>  
     );
 }
