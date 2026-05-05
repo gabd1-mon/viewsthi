@@ -9,7 +9,8 @@ export default function Dashboard({
     pedidosFracionados,
     tmaDistribuicao,
     envelhecimento,
-    segmentosCriticos
+    segmentosCriticos,
+    diagnosticoPorEstado
 }) {
     return (
     <PanelLayout>
@@ -21,7 +22,7 @@ export default function Dashboard({
                     <span className="text-4xl">🚨</span>
                     <div>
                         <p className="text-lg text-red-600 font-bold">{itensParados.total} itens com mais de 60 dias sem faturar - ação imediata necessária</p>
-                        <p className="text-sm text-gray-200 mt-1">A carteira tem {carteiraPendente.percent}% no vermelho. O TMA faturado não reflete a realidade do cliente</p>
+                        <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">A carteira tem {carteiraPendente.percent}% no vermelho. O TMA faturado não reflete a realidade do cliente</p>
                     </div>
                 </div>
             </div>
@@ -42,7 +43,7 @@ export default function Dashboard({
                             
                         </div>
                         <p className="text-5xl mt-4 font-bold text-green-400">{tmaFaturado.percent}%</p>
-                        <p className="text-sm mt-4 text-gray-300">Meta: {tmaFaturado.meta}% · <span className="text-green-400 font-bold">✓ Batendo</span></p>
+                        <p className="text-sm mt-4 text-gray-700 dark:text-gray-300">Meta: {tmaFaturado.meta}% · <span className="text-green-400 font-bold">✓ Batendo</span></p>
                     </div>
                 </Card>
 
@@ -53,7 +54,7 @@ export default function Dashboard({
                             
                         </div>
                         <p className="text-5xl mt-4 font-bold text-red-400">{carteiraPendente.percent}%</p>
-                        <p className="text-sm mt-4 text-gray-300">{carteiraPendente.total} itens · {carteiraPendente.atraso} em atraso</p>
+                        <p className="text-sm mt-4 text-gray-700 dark:text-gray-300">{carteiraPendente.total} itens · {carteiraPendente.atraso} em atraso</p>
                     </div>
                 </Card>
 
@@ -64,7 +65,7 @@ export default function Dashboard({
                             
                         </div>
                         <p className="text-5xl mt-4 font-bold text-yellow-400">{itensParados.total.toLocaleString('pt-BR')}</p>
-                        <p className="text-sm mt-4 text-gray-300">{itensParados.percent}% do total da carteira</p>
+                        <p className="text-sm mt-4 text-gray-700 dark:text-gray-300">{itensParados.percent}% do total da carteira</p>
                     </div>
                 </Card>
 
@@ -72,7 +73,7 @@ export default function Dashboard({
                     <div className="flex flex-col justify-start h-full">
                         <h1 className="text-xs font-bold tracking-widest text-gray-400">PEDIDOS FRACIONADOS</h1>
                         <p className="text-5xl mt-4 font-bold text-blue-400">~{pedidosFracionados.percent}%</p>
-                        <p className="text-sm mt-4 text-gray-300">{pedidosFracionados.descricao}</p>
+                        <p className="text-sm mt-4 text-gray-700 dark:text-gray-300">{pedidosFracionados.descricao}</p>
                     </div>
                 </Card>
 
@@ -85,7 +86,7 @@ export default function Dashboard({
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {tmaDistribuicao.map((tabela, i) => (
                         <Card key={i} className="w-full dark:bg-gray-900/90 rounded-lg overflow-hidden">
-                            <p className="text-gray-400 text-xs tracking-widest leading-tight mb-2">
+                            <p className="text-gray-700 dark:text-gray-300 text-xs tracking-widest leading-tight mb-2">
                                 {tabela.titulo}
                             </p>
                             <Table className="!bg-transparent">
@@ -114,19 +115,18 @@ export default function Dashboard({
                 <Card className="w-full dark:bg-gray-900/60 rounded-lg">
                     <div className="flex items-center justify-between mb-4">
                         <p className="dark:text-white font-bold"> Envelhecimento da Carteira</p>
-                        <span className="text-xs text-red-400 border border-red-400 px-2 py-1 rounded">CRÍTICO</span>
                     </div>
                     {envelhecimento.faixas.map((item) => (
                         <div key={item.label} className="mb-3">
                             <div className="flex items-center gap-2">
-                                <span className="text-gray-400 text-xs w-20 shrink-0">{item.label}</span>
+                                <span className="text-gray-700 dark:text-gray-300 text-xs w-20 shrink-0">{item.label}</span>
                                 <div className="flex-1 bg-gray-700 rounded-full h-5 relative">
                                     <div className="h-5 rounded-full flex items-center px-2"
-    style={{ width: `${item.percent * 3}%`, backgroundColor: item.cor }}>
+                                        style={{ width: `${item.percent * 3}%`, backgroundColor: item.cor }}>
                                         <span className="text-xs font-bold text-black">{item.valor.toLocaleString('pt-BR')}</span>
                                     </div>
                                 </div>
-                                <span className="text-gray-300 text-xs w-10 text-right">{item.percent}%</span>
+                                <span className="text-gray-700 dark:text-gray-300 text-xs w-10 text-right">{item.percent}%</span>
                             </div>
                         </div>
                     ))}
@@ -141,16 +141,97 @@ export default function Dashboard({
                     <div className="flex items-center justify-between mb-4">
                         <p className="dark:text-white font-bold"> Segmentos Críticos</p>
                     </div>
-                    <p className="text-gray-400 text-xs tracking-widest mb-3">CARTEIRA PENDENTE</p>
+                    <p className="text-gray-700 dark:text-gray-300 text-xs tracking-widest mb-3">CARTEIRA PENDENTE</p>
                     {segmentosCriticos.map((item) => (
                         <div key={item.label} className="flex items-center justify-between py-2 border-b border-gray-700 last:border-0">
-                            <span className="text-gray-300 text-sm">{item.label}</span>
+                            <span className="text-gray-700 dark:text-gray-300 text-sm">{item.label}</span>
                             <span className="text-red-400 font-bold text-sm">{item.percent}%</span>
                         </div>
                     ))}
                 </Card>
-
             </div>
+                                {/* Diagnóstico por Estado */}
+                    <div className="flex items-center gap-4 my-4">
+                        <span className="text-gray-500 text-sm whitespace-nowrap">DIAGNÓSTICO POR ESTADO</span>
+                        <hr className="flex-1 border-t border-gray-700" />
+                    </div>
+
+                    <Card className="w-full dark:bg-gray-900/60 rounded-lg overflow-x-auto">
+
+                        {/* Filtros */}
+                        <div className="flex gap-2 mb-4">
+                            {['criticos', 'atencao', 'todos'].map((filtro) => (
+                                <button
+                                    key={filtro}
+                                    className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold border transition-colors
+                                        ${filtro === diagnosticoPorEstado.filtroAtivo
+                                            ? 'bg-gray-700 border-gray-500 text-white'
+                                            : 'border-gray-600 text-gray-400 hover:border-gray-400'
+                                        }`}
+                                >
+                                    <span className={`w-2 h-2 rounded-full inline-block
+                                        ${filtro === 'criticos' ? 'bg-red-500' : filtro === 'atencao' ? 'bg-yellow-400' : 'bg-gray-400'}`}
+                                    ></span>
+                                    {filtro.charAt(0).toUpperCase() + filtro.slice(1)}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Tabela */}
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-sm">
+                                <thead>
+                                    <tr className="text-gray-500 text-xs tracking-widest border-b border-gray-700">
+                                        <th className="text-left py-2 pr-4">UF</th>
+                                        <th className="text-left py-2 pr-4">VERDE FATURADO</th>
+                                        <th className="text-left py-2 pr-4">VERM. FATURADO</th>
+                                        <th className="text-left py-2 pr-4">FRACIONADO</th>
+                                        <th className="text-left py-2 pr-4">% PENDENTE</th>
+                                        <th className="text-left py-2 pr-4">VERM. CARTEIRA</th>
+                                        <th className="text-left py-2">DIAGNÓSTICO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {diagnosticoPorEstado.estados.map((estado) => (
+                                        <tr key={estado.uf} className="border-b border-gray-800 hover:bg-gray-800/40 transition-colors">
+                                            <td className="py-3 pr-4 font-bold text-white">{estado.uf}</td>
+                                            <td className="py-3 pr-4">
+                                                <span className={`font-bold ${estado.verdeFaturado >= 70 ? 'text-green-400' : 'text-red-400'}`}>
+                                                    {estado.verdeFaturado}%
+                                                </span>
+                                            </td>
+                                            <td className="py-3 pr-4">
+                                                <span className="bg-red-900/60 text-red-400 font-bold px-2 py-1 rounded">
+                                                    {estado.vermFaturado}%
+                                                </span>
+                                            </td>
+                                            <td className="py-3 pr-4 text-gray-700 dark:text-gray-300">{estado.fracionado}%</td>
+                                            <td className="py-3 pr-4">
+                                                <span className={`font-bold px-2 py-1 rounded ${estado.pendente >= 80 ? 'bg-red-900/60 text-red-400' : 'text-gray-700 dark:text-gray-300'}`}>
+                                                    {estado.pendente}%
+                                                </span>
+                                            </td>
+                                            <td className="py-3 pr-4">
+                                                <span className={`font-bold px-2 py-1 rounded ${estado.vermCarteira >= 80 ? 'bg-red-900/60 text-red-400' : 'text-gray-700 dark:text-gray-300'}`}>
+                                                    {estado.vermCarteira}%
+                                                </span>
+                                            </td>
+                                            <td className="py-3">
+                                                <span className="flex items-center gap-2">
+                                                    <span className={`w-2 h-2 rounded-full inline-block ${estado.nivel === 'critico' ? 'bg-red-500' : 'bg-yellow-400'}`}></span>
+                                                    <span className="text-gray-700 dark:text-gray-300">{estado.diagnostico}</span>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </Card>
+                    <hr className="border-t border-gray-700 my-6" />
+
+                    
 
         </div>   
     </PanelLayout>  

@@ -73,6 +73,17 @@ class DashboardController extends Controller
                 ['label' => 'Tubo',               'percent' => 4],
             ],
 
+            'diagnosticoPorEstado' => [
+                    'filtroAtivo' => 'atencao', // criticos, atencao, todos
+                    'estados' => [
+                        ['uf' => 'PR', 'verdeFaturado' => 30.5, 'vermFaturado' => 43.2, 'fracionado' => 0,  'pendente' => 100, 'vermCarteira' => 100, 'diagnostico' => 'Colapso total',  'nivel' => 'critico'],
+                        ['uf' => 'MT', 'verdeFaturado' => 49.2, 'vermFaturado' => 29.7, 'fracionado' => 29, 'pendente' => 43,  'vermCarteira' => 85.5,'diagnostico' => 'Crítico',        'nivel' => 'critico'],
+                        ['uf' => 'BA', 'verdeFaturado' => 66.8, 'vermFaturado' => 28.6, 'fracionado' => 27, 'pendente' => 66,  'vermCarteira' => 79.1,'diagnostico' => 'Crítico',        'nivel' => 'critico'],
+                        ['uf' => 'RO', 'verdeFaturado' => 49.3, 'vermFaturado' => 14.3, 'fracionado' => 67, 'pendente' => 33,  'vermCarteira' => 79.3,'diagnostico' => 'Frac. extremo',  'nivel' => 'atencao'],
+                    ],
+            ],
+            
+
         ]);
     }
 }
